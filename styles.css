@@ -226,3 +226,42 @@ footer p {
     margin-top: 10px;
     font-size: 14px;
 }
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .sidebar, .content {
+        width: 100%;
+        float: none;
+        padding: 10px;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-detail {
+        flex-direction: column;
+    }
+
+    .product-detail img {
+        margin-bottom: 20px;
+    }
+}
