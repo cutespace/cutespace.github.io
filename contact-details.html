@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chunya - Contact Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=c49ec00f18f71b7138d9b7c169170c9f"></script>
+    <script>
+        async function initMap() {
+            // 使用高德Web服务API获取地址的经纬度
+            const address = "南京市秦淮区友谊河路1-2号2楼210, 211";
+            const apiKey = "c49ec00f18f71b7138d9b7c169170c9f"; // 替换为你的高德API密钥
+            const geocodeUrl = `https://restapi.amap.com/v3/geocode/geo?address=${encodeURIComponent(address)}&key=${apiKey}`;
+
+            try {
+                const response = await fetch(geocodeUrl);
+                const data = await response.json();
+                if (data.geocodes && data.geocodes.length > 0) {
+                    const location = data.geocodes[0].location.split(',');
+                    const lng = parseFloat(location[0]);
+                    const lat = parseFloat(location[1]);
+
+                    // 初始化地图
+                    var map = new AMap.Map('map', {
+                        center: [lng, lat],
+                        zoom: 15
+                    });
+
+                    // 添加标记
+                    var marker = new AMap.Marker({
+                        position: [lng, lat],
+                        map: map,
+                        title: 'Nanjing Chunya Electromechanical Technology Research Institute'
+                    });
+                } else {
+                    console.error('无法获取地理编码数据');
+                }
+            } catch (error) {
+                console.error('请求地理编码数据时出错', error);
+            }
+        }
+
+        window.onload = initMap;
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="E:/Chunya/我的/IO WEB/cutespace.github.io-main/纯涯网站/商标.jpg" alt="Chunya Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="company-profile.html">Company Profile</a></li>
+                    <li><a href="institute-founder.html">Institute Founder</a></li>
+                    <li><a href="contact-details.html">Contact Details</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <span>Hotline: +86 198-5042-0698</span>
+                <p>Email: rupingzhang.chunya@gmail.com</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="sidebar">
+            <h2>About Us</h2>
+            <ul>
+                <li><a href="company-profile.html">Company Profile</a></li>
+                <li><a href="institute-founder.html">Institute Founder</a></li>
+                <li><a href="contact-details.html">Contact Details</a></li>
+            </ul>
+            <div class="contact-info-sidebar">
+                <p>Nanjing Chunya Electromechanical Technology Research Institute</p>
+                <p>Hotline: +86 19850420698</p>
+                <p>Sales Manager: Mr. Zhang Ruping</p>
+                <p>Email: rupingzhang.chunya@gmail.com</p>
+                <p>Address: 210, 211, 2/F, No. 1-2 Youyihe Road, Qinhuai District, Nanjing, China</p>
+            </div>
+        </div>
+        <div class="content">
+            <section id="contact-info">
+                <h2>Contact Details</h2>
+                <div class="contact-details">
+                    <p>Nanjing Chunya Electromechanical Technology Research Institute</p>
+                    <p>Hotline: +86 19850420698 </p>
+                    <p>Sales Manager: Mr. Zhang Ruping</p>
+                    <p>Email: rupingzhang.chunya@gmail.com</p>
+                    <p>Address: 210, 211, 2/F, No. 1-2 Youyihe Road, Qinhuai District, Nanjing, China</p>
+                </div>
+                <div id="map" style="height: 400px; width: 100%;"></div>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Nanjing Chunya Electromechanical Technology Research Institute. All rights reserved.</p>
+    </footer>
+</body>
+</html>
